@@ -2,6 +2,7 @@ package client;
 
 import domain.singleton.OrderProcessor;
 import domain.factory.AbstractOrderFactory;
+import domain.factory.ClothingOrderFactory;
 import domain.factory.ElectronicsOrderFactory;
 import domain.factory.FurnitureOrderFactory;
 import domain.models.builder.OrderBuilder;
@@ -25,9 +26,19 @@ public class Main {
                 .setCustomerName("Pedri Gonzalez")
                 .setAddress("Av. De Joan XVIII")
                 .setProductType("Bed")
-                .setQuantity(1)
+                .setQuantity(8)
                 .build();
 
         processor.processOrder(customFurnitureOrder);
+
+        AbstractOrderFactory clothingFactory = new ClothingOrderFactory();
+        Order clothingOrder = new OrderBuilder(clothingFactory)
+                .setCustomerName("Lamine Yamal")
+                .setAddress("Cabra 304 St")
+                .setProductType("Barca Jersey")
+                .setQuantity(19)
+                .build();
+
+        processor.processOrder(clothingOrder);
     }
 }
