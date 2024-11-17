@@ -8,6 +8,10 @@ import domain.models.builder.OrderBuilder;
 import domain.models.order.Order;
 import domain.singleton.OrderProcessor;
 import domain.adapter.PayPalAdapter;
+import domain.decorator.DiscountDecorator;
+import domain.decorator.GiftWrapDecorator;
+import domain.decorator.OrderProcessorDecorator;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -35,6 +39,12 @@ public class Main {
                 .build();
 
         processor.processOrder(customFurnitureOrder);
+        DiscountDecorator discountDecorator = new DiscountDecorator(0.10);
+        GiftWrapDecorator giftWrapDecorator = new GiftWrapDecorator();
+
+        discountDecorator.setNext(giftWrapDecorator);
+        processor.processOrderWithDecorators(customFurnitureOrder, discountDecorator);
+
 
         AbstractOrderFactory clothingFactory = new ClothingOrderFactory();
         Order clothingOrder = new OrderBuilder(clothingFactory)

@@ -12,4 +12,9 @@ public abstract class Order {
     public void setAddress(String address) { this.address = address; }
     public void setProductType(String productType) { this.productType = productType; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
+
+    public String getCustomerName() { return customerName; }
+    public String getAddress() { return address; }
+    public String getProductType() { return productType; }
+    public int getQuantity() { return quantity; }
 }
