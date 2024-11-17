@@ -10,7 +10,9 @@ import domain.singleton.OrderProcessor;
 import domain.adapter.PayPalAdapter;
 import domain.decorator.DiscountDecorator;
 import domain.decorator.GiftWrapDecorator;
-import domain.decorator.OrderProcessorDecorator;
+import domain.composite.OrderBundle;
+import domain.composite.OrderItem;
+import domain.composite.Product;
 
 
 public class Main {
@@ -55,5 +57,24 @@ public class Main {
                 .build();
 
         processor.processOrder(clothingOrder);
+
+        OrderItem laptop = new Product("Laptop", 1000.00);
+        OrderItem smartphone = new Product("Smartphone", 500.00);
+        OrderItem headphones = new Product("Headphones", 150.00);
+
+        OrderBundle techBundle = new OrderBundle("Tech Bundle");
+        techBundle.addItem(laptop);
+        techBundle.addItem(smartphone);
+
+        OrderBundle megaBundle = new OrderBundle("Mega Bundle");
+        megaBundle.addItem(techBundle);
+        megaBundle.addItem(headphones);
+
+        System.out.println(techBundle.getDescription());
+        System.out.println("Tech Bundle Total Price: $" + techBundle.getPrice());
+
+        System.out.println(megaBundle.getDescription());
+        System.out.println("Mega Bundle Total Price: $" + megaBundle.getPrice());
+
     }
 }
