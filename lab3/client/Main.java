@@ -28,33 +28,33 @@ public class Main {
                 .build();
 
         OrderProcessor processor = OrderProcessor.getInstance();
-        processor.addObserver(new EmailNotificationObserver());
-        processor.addObserver(new LoggingObserver());
-        processor.addObserver(new DatabaseObserver());
+        //processor.addObserver(new EmailNotificationObserver());
+        //processor.addObserver(new LoggingObserver());
+        //processor.addObserver(new DatabaseObserver());
         processor.processOrder(electronicsOrder);
 
         PaymentStrategy paypalPayment = new PayPalPayment("alice@example.com");
         processor.processPayment(paypalPayment, 299.99);
-
-        AbstractOrderFactory furnitureFactory = new FurnitureOrderFactory();
-        Order customFurnitureOrder = new OrderBuilder(furnitureFactory)
-                .setCustomerName("Pedri Gonzalez")
-                .setAddress("Av. De Joan XVIII")
-                .setProductType("Bed")
-                .setQuantity(8)
-                .build();
-
-        processor.removeObserver(new EmailNotificationObserver());
-        processor.processOrder(customFurnitureOrder);
-
-        DiscountDecorator discountDecorator = new DiscountDecorator(0.10);
-        GiftWrapDecorator giftWrapDecorator = new GiftWrapDecorator();
-
-        discountDecorator.setNext(giftWrapDecorator);
-        processor.processOrderWithDecorators(customFurnitureOrder, discountDecorator);
-
-        PaymentStrategy creditCardPayment = new CreditCardPayment("1234-5678-9876-5432", "Pedri Gonzalez");
-        processor.processPayment(creditCardPayment, 800.0);
+//
+//        AbstractOrderFactory furnitureFactory = new FurnitureOrderFactory();
+//        Order customFurnitureOrder = new OrderBuilder(furnitureFactory)
+//                .setCustomerName("Pedri Gonzalez")
+//                .setAddress("Av. De Joan XVIII")
+//                .setProductType("Bed")
+//                .setQuantity(8)
+//                .build();
+//
+//        processor.removeObserver(new EmailNotificationObserver());
+//        processor.processOrder(customFurnitureOrder);
+//
+//        DiscountDecorator discountDecorator = new DiscountDecorator(0.10);
+//        GiftWrapDecorator giftWrapDecorator = new GiftWrapDecorator();
+//
+//        discountDecorator.setNext(giftWrapDecorator);
+//        processor.processOrderWithDecorators(customFurnitureOrder, discountDecorator);
+//
+//        PaymentStrategy creditCardPayment = new CreditCardPayment("1234-5678-9876-5432", "Pedri Gonzalez");
+//        processor.processPayment(creditCardPayment, 800.0);
 
         AbstractOrderFactory clothingFactory = new ClothingOrderFactory();
         Order clothingOrder = new OrderBuilder(clothingFactory)

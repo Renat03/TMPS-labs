@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OrderProcessor {
     private static domain.singleton.OrderProcessor instance;
-    private final List<Observer> observers = new ArrayList<>(); // Holds all registered observers
+    private final List<Observer> observers = new ArrayList<>();
 
 
     private OrderProcessor() {}

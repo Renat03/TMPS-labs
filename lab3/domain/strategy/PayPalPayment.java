@@ -14,3 +14,4 @@ public class PayPalPayment implements PaymentStrategy {
         System.out.println("Amount Paid: $" + amount);
     }
 }
+
